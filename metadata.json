@@ -1,0 +1,7 @@
+{
+  "name": "Animoo - Tinder pour Chiens et Chats",
+  "description": "L'application de rencontre et de playdates pour vos boules de poils. Faites glisser, matchez et organisez des balades inoubliables pour votre chien ou chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
