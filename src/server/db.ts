@@ -15,6 +15,9 @@ const connectionString =
 const sql = neon(connectionString);
 
 async function queryNeon(text: string, params: any[] = []): Promise<any[]> {
+  if (typeof (sql as any).query === 'function') {
+    return (sql as any).query(text, params);
+  }
   return (sql as any)(text, params);
 }
 

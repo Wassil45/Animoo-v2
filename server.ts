@@ -36,7 +36,10 @@ const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const args = process.argv.slice(2);
+  const portIndex = args.indexOf('--port');
+  const portFromArgs = portIndex !== -1 && args[portIndex + 1] ? Number(args[portIndex + 1]) : null;
+  const PORT = portFromArgs || (process.env.PORT && process.env.PORT !== '8080' ? Number(process.env.PORT) : 3000);
   const isProduction = process.env.NODE_ENV === 'production';
 
   app.use(express.json());
@@ -367,7 +370,7 @@ async function startServer() {
   if (!isProduction) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { middlewareMode: true, hmr: false },
       appType: 'spa',
     });
     app.use(vite.middlewares);
